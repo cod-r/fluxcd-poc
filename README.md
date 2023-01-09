@@ -98,9 +98,52 @@ spec:
       retention: 7d
 EOF
 ```
+## Install loki-stack helm chart
+Install in the same namespace as kube-prometheus-stack
+1. Create HelmRepository
+```yaml
+cat > apps/loki-stack/helm-repository.yaml <<EOF
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: loki-stack
+  namespace: kube-prometheus-stack
+spec:
+  interval: 5m
+  url: https://grafana.github.io/helm-charts
+EOF
+```
 
+2. Create HelmRelease
+```yaml
+cat > apps/loki-stack/helm-release.yaml <<EOF
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: kube-prometheus-stack
+spec:
+  releaseName: loki-stack
+  chart:
+    spec:
+      chart: loki-stack
+      version: "2.8.3"
+      sourceRef:
+        kind: HelmRepository
+        name: loki-stack
+  interval: 10m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  values:
+    loki:
+      enabled: true
+      isDefault: false
+EOF
+```
 
-### Access Grafana
+## Access Grafana
 ```sh
 kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
 ```
