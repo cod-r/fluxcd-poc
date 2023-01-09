@@ -20,4 +20,4 @@ spec:
   values:
     prometheus:
       prometheusSpec:
-      retention: 7d
+        retention: 7d
