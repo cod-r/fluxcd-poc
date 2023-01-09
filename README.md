@@ -47,7 +47,17 @@ EOF
 
 ## Install kube-prometheus-stack helm chart
 
-1. Create HelmRepository
+1. Create Namespace
+```yaml
+cat > apps/kube-prometheus-stack/namespace.yaml <<EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kube-prometheus-stack
+EOF
+```
+
+2. Create HelmRepository
 ```yaml
 cat > apps/kube-prometheus-stack/helm-repository.yaml <<EOF
 apiVersion: source.toolkit.fluxcd.io/v1beta2
@@ -61,7 +71,7 @@ spec:
 EOF
 ```
 
-2. Create HelmRelease
+3. Create HelmRelease
 ```yaml
 cat > apps/kube-prometheus-stack/helm-release.yaml <<EOF
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
@@ -88,3 +98,13 @@ spec:
       retention: 7d
 EOF
 ```
+
+
+### Access Grafana
+```sh
+kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
+```
+Open http://localhost:3000
+
+Username: admin  
+Password: prom-operator
