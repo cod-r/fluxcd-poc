@@ -46,3 +46,45 @@ EOF
 ```
 
 ## Install kube-prometheus-stack helm chart
+
+1. Create HelmRepository
+```yaml
+cat > apps/kube-prometheus-stack/helm-repository.yaml <<EOF
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: kube-prometheus-stack
+  namespace: kube-prometheus-stack
+spec:
+  interval: 5m
+  url: https://prometheus-community.github.io/helm-charts
+EOF
+```
+
+2. Create HelmRelease
+```yaml
+cat > apps/kube-prometheus-stack/helm-release.yaml <<EOF
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: kube-prometheus-stack
+spec:
+  releaseName: kube-prometheus-stack
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: '40.3.1'
+      sourceRef:
+        kind: HelmRepository
+        name: kube-prometheus-stack
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+  values:
+    prometheus:
+      prometheusSpec:
+      retention: 7d
+EOF
+```
