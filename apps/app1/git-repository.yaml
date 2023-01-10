@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: app1
+  namespace: app1
+spec:
+  interval: 5m0s
+  url: https://github.com/cod-r/app1
+  ref:
+    branch: master

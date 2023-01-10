@@ -1,0 +1,12 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: app1
+  namespace: app1
+spec:
+  interval: 1m0s
+  sourceRef:
+    kind: GitRepository
+    name: app1
+  path: ./app1/overlays/prod
+  prune: true
