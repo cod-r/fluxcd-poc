@@ -28,12 +28,12 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 ## Install flux on dev and prod clusters
 1. Export GitHub token
 ```sh
-export GITHUB_TOKEN=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
+export GITHUB_TOKEN=<token>
 ```
 
 2. Run the bootstrap command for dev cluster
 ```sh
-flux bootstrap --context=kind-dev
+flux bootstrap --context=kind-dev \
  github \
   --owner=cod-r \
   --repository=fluxcd-poc \
@@ -43,7 +43,7 @@ flux bootstrap --context=kind-dev
 
 3. Run the bootstrap command for prod cluster
 ```sh
-flux bootstrap --context=kind-prod
+flux bootstrap --context=kind-prod \
  github \
   --owner=cod-r \
   --repository=fluxcd-poc \
