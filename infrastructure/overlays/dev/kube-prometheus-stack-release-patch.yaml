@@ -4,19 +4,9 @@ metadata:
   name: kube-prometheus-stack
   namespace: kube-prometheus-stack
 spec:
-  releaseName: kube-prometheus-stack
   chart:
     spec:
-      chart: kube-prometheus-stack
       version: "43.2.1"
-      sourceRef:
-        kind: HelmRepository
-        name: kube-prometheus-stack
-  interval: 10m
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
   values:
     prometheus:
       prometheusSpec:

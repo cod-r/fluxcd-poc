@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: traxprime
+resources:
+  - ../../bases/kube-prometheus-stack
+  - ../../bases/loki-stack
+patchesStrategicMerge:
+  - kube-prometheus-stack-release-patch.yaml
+  - loki-stack-release-patch.yaml
