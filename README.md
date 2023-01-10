@@ -71,6 +71,8 @@ EOF
 ```
 5. Repeat for prod cluster
 
+After committing the changes kube-prometheus-stack and loki-stack will be installed in both clusters.
+
 ## Access Grafana
 ```sh
 kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
