@@ -73,6 +73,16 @@ EOF
 
 After committing the changes kube-prometheus-stack and loki-stack will be installed in both clusters.
 
+## Weave GitOps Dashboard
+- [clusters/dev/weave-gitops-dashboard.yaml](/clusters/dev/weave-gitops-dashboard.yaml)
+- [clusters/prod/weave-gitops-dashboard.yaml](/clusters/prod/weave-gitops-dashboard.yaml)
+
+Access:
+```sh
+kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
+```
+Open http://localhost:3000
+
 ## Access Grafana
 ```sh
 kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
