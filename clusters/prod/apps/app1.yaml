@@ -10,7 +10,7 @@ metadata:
   namespace: app1
 spec:
   interval: 5m0s
-  url: https://github.com/cod-r/app1
+  url: https://github.com/cod-r/app1-k8s
   ref:
     branch: master
 ---
