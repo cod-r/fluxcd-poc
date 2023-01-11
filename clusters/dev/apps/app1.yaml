@@ -20,7 +20,7 @@ metadata:
   name: app1
   namespace: app1
 spec:
-  interval: 1m0s
+  interval: 10m0s
   sourceRef:
     kind: GitRepository
     name: app1
