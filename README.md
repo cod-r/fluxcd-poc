@@ -79,9 +79,9 @@ After committing the changes kube-prometheus-stack and loki-stack will be instal
 
 Access:
 ```sh
-kubectl port-forward -n kube-prometheus-stack svc/kube-prometheus-stack-grafana 3000:80
+kubectl port-forward -n flux-system svc/ww-gitops-weave-gitops 9001:9001
 ```
-Open http://localhost:3000
+Open http://localhost:9001
 
 ## Access Grafana
 ```sh
