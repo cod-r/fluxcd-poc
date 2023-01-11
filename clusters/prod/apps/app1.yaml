@@ -12,7 +12,7 @@ spec:
   interval: 5m0s
   url: https://github.com/cod-r/app1-k8s
   ref:
-    branch: master
+    branch: main
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
