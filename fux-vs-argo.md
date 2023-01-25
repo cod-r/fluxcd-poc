@@ -1,11 +1,11 @@
 Flux advantages:
 - Operators oriented
-- Permissions use native k8s RBAC
 - Easier cluster bootstrapping
+- Permissions use native k8s RBAC
 
 Flux disadvantages:
 - UI is a plugin and has guarded features behind enterprise license
-- You need access to the k8s cluster
+- You need kubectl for debugging
 
 
 Argo advantages:
@@ -14,9 +14,9 @@ Argo advantages:
     - view container logs
     - exec into terminal for pods
 - Multi cluster management
-- Has its own user management
 - Developers need access only to argocd UI
-- Higher development velocity in github stats
+- Higher development velocity in github
 
 Argo disadvantages:
 - Installing helm charts is better in Flux
+- Server-side apply is incomplete
